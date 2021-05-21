@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "528725200474",
+    "project_id": "stars-challenge-83dfe",
+    "storage_bucket": "stars-challenge-83dfe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:528725200474:android:a292c9cc3a6f8c1ffe5263",
+        "android_client_info": {
+          "package_name": "com.example.veterans_code_a_thon_android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "528725200474-e22vesr5veqreudu3nhp34rhpubqh30a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCopNcNO2WR4xGPIuVinR0eKdPXd_0Zcjs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "528725200474-e22vesr5veqreudu3nhp34rhpubqh30a.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "528725200474-1p6ql94ih72v1qpsltptjub1d8ggi4hj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.leonardbox.veterans-code-a-thon"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
