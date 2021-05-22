@@ -15,7 +15,6 @@ import java.util.List;
  */
 public class Category {
     String category;
-    ImageView icon;
 
     public Category (JSONObject jsonObject) throws JSONException {
         category = jsonObject.getString("");//FireBase?
@@ -24,9 +23,6 @@ public class Category {
     public static List<Category> fromJsonArray(JSONArray categoryJsonArray)
             throws JSONException {
         List<Category> categories = new ArrayList<>();
-        for (int i = 0; i < categoryJsonArray.length(); i++) {
-            //categories.add(new Category(mov))
-        }
 
         return categories;
     }
