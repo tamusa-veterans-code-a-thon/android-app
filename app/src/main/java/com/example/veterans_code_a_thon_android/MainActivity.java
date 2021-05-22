@@ -51,6 +51,7 @@ private TextView forgotPasswordButton;
         }
         else{
             //log in the user!
+            //Start CategoryActivity
         }
     }
 
