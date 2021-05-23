@@ -2,20 +2,14 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cCategory"
+    android:id="@+id/cBusiness"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#999E9C">
 
     <TextView
-        android:id="@+id/tvCategory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Mining"
-        android:layout_margin="20dp"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:textColor="@color/black">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     </TextView>
 
 </RelativeLayout>

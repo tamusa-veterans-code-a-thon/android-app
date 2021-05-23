@@ -41,4 +41,8 @@ public class Category {
         Log.d(TAG, categories.toString());
         return categories;
     }
+
+    public String getCategory () {
+        return category;
+    }
 }

@@ -20,6 +20,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * This is the activity for displaying the available
+ * categories. This can be made prettier later on.
+ */
 public class CategoriesActivity extends AppCompatActivity {
     public static final String TAG = "CategoriesActivity";
 
@@ -87,5 +91,10 @@ public class CategoriesActivity extends AppCompatActivity {
  * we can send [each business OR individual businesses] to Category.extract, which will
  * extract the category from the business[es] and return them [individually OR as list].
  * No mater what, they need to be a list before they reach the recycler. Then they are converted
- * to an array and are sorted. The sorted array is used in the CategoryAdapter
+ * to an array and are sorted. The sorted array is used in the CategoryAdapter.
+ *
+ * ADDITIONALLY!
+ * Make sure that I don't have to disect it; in Flixter, I have to loop through each JSON object,
+ *  convert each object to the model, then store it in the list i return; depending on the struture
+ *  of the DataSnapshot, this may or may not be needed!
  */
