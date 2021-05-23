@@ -6,8 +6,6 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
@@ -36,7 +34,6 @@ public class Map extends FragmentActivity implements OnMapReadyCallback, GoogleA
     private Location lastLocation;
     private Marker userLocation;
     private static final int Request_User_Location_Code = 99;
-    private boolean active = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +73,8 @@ public class Map extends FragmentActivity implements OnMapReadyCallback, GoogleA
         gMap.setOnMarkerClickListener(marker -> {
             Intent i = new Intent(this, InformationPopUp.class);
             startActivity(i);
+            String passName = marker.getTitle();
+            i.putExtra("businessPassed", passName);
             gMap.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
             return true;
         });
@@ -99,15 +98,24 @@ public class Map extends FragmentActivity implements OnMapReadyCallback, GoogleA
 
         // Get user's location
         LatLng lastLocation = new LatLng(location.getLatitude(), location.getLongitude());
-
         CameraUpdate update = CameraUpdateFactory.newLatLngZoom(lastLocation, 15.5f);
         gMap.moveCamera(update);
-
         // Add marker and snippet
         MarkerOptions options = new MarkerOptions();
         options.position(lastLocation);
         options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+        options.title("You");
         gMap.addMarker(options);
+
+        String[] businessNames = {"Business1","Business2","Business3","Business4","Business5"};
+        double[] newLatitude = {29.427368305394978,29.426910419300256,29.427358960801435,29.425536748631185,29.426574011874475};
+        double[] newLongitude = {-98.49412054593566,-98.49495739514481,-98.49416346127971,-98.49474281842453,-98.49167437132428};
+
+        // Create marks of the preset locations
+        for (int i = 0; i < newLatitude.length; i++) {
+            LatLng businesses = new LatLng(newLatitude[i], newLongitude[i]);
+            Marker address = gMap.addMarker(new MarkerOptions().position(businesses).title(businessNames[i]).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+        }
 
         if (googleApi != null) {
             LocationServices.FusedLocationApi.removeLocationUpdates(googleApi, this);
