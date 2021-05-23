@@ -24,20 +24,21 @@ public class Category {
         category = jsonObject.getString("");//FireBase?
     }
 
-    public static Category[] fromJsonArray(JSONArray categoryJsonArray)
+    //Depending on how we loop, this either returns individual categories or a list
+    public static List<Category> extractCategory (List<Business> businesses)
             throws JSONException {
         HashSet<Category> businessCategories = new HashSet<>();
 
         //for loop through each bussiness
             //for loop through each business' categories
-                //categories.add(new Category)
+                //businessCategories.add(new Category)
 
-        Category categories[] = new Category[businessCategories.size()];
+        //Category categories[] = new Category[businessCategories.size()];
+        List<Category> categories = new ArrayList<>();
         //convert hashset to list (iterate hashset, or find helper method)
-        Arrays.sort(categories);
 
+        //Arrays.sort(categories);
         Log.d(TAG, categories.toString());
-
         return categories;
     }
 }
