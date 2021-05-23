@@ -23,6 +23,9 @@
 
         <activity android:name=".newUser"></activity>
         <activity android:name=".ForgotPassword"></activity>
+        <activity android:name=".BusinessesActivity"></activity>
+        <activity android:name=".CategoriesActivity"></activity>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -119,7 +119,8 @@
         android:layout_below="@id/createAccount"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:textAlignment="center">
+        android:textAlignment="center"
+        android:id="@+id/loginpage">
 
     </TextView>
 
