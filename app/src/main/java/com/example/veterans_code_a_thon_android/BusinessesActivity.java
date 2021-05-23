@@ -17,6 +17,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.parceler.Parcels;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -38,9 +40,14 @@ public class BusinessesActivity extends AppCompatActivity {
 
         //businesses = getIntent();//???
 
+        List<Business> temp = Parcels.unwrap(getIntent().getParcelableExtra("businesses"));
+        businesses = new Business[temp.size()];
+        for (int i = 0; i < temp.size(); i++) {
+            businesses[i] = temp.get(i);
+        }
+
         RecyclerView rvBusinesses = findViewById(R.id.rvBusinesses);
 
-        Arrays.sort(businesses);
         final BusinessAdapter businessAdapter = new BusinessAdapter(this, businesses);
         rvBusinesses.setAdapter(businessAdapter);
         rvBusinesses.setLayoutManager(new LinearLayoutManager(this));

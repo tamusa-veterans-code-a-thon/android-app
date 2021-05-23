@@ -2,7 +2,9 @@ package com.example.veterans_code_a_thon_android.models;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
+@Parcel
 public class Business {
     int duns;
     String address1;

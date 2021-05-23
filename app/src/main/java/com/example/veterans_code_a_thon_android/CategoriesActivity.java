@@ -100,7 +100,7 @@ public class CategoriesActivity extends AppCompatActivity {
                         //BE WARNED! "[Class].this" MAY BE WRONG!!! Take this out
                         // of listener???
                         final CategoryAdapter categoryAdapter =
-                                new CategoryAdapter(CategoriesActivity.this, categories);
+                                new CategoryAdapter(CategoriesActivity.this, categories, businesses);
                         rvCategories.setAdapter(categoryAdapter);
                         rvCategories.setLayoutManager(
                                 new LinearLayoutManager(CategoriesActivity.this));
