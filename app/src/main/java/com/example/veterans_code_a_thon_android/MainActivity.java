@@ -68,7 +68,7 @@ private TextView forgotPasswordButton;
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
                     Log.w(TAG,"sign in with email Successful");
-                    Toast.makeText(MainActivity.this,"LogIn successful",Toast.LENGTH_SHORT);
+                    Toast.makeText(MainActivity.this,"LogIn successful",Toast.LENGTH_SHORT).show();
                     FirebaseUser user= firebaseAuth.getCurrentUser();
                     updateUI(user);
                     startActivity(new Intent(getApplicationContext(),ForgotPassword.class));
@@ -76,7 +76,7 @@ private TextView forgotPasswordButton;
                 }
                 else{
                     Log.w(TAG,"sign in with email failed", task.getException());
-                    Toast.makeText(MainActivity.this,task.getException().getMessage(),Toast.LENGTH_SHORT);
+                    Toast.makeText(MainActivity.this,task.getException().getMessage(),Toast.LENGTH_SHORT).show();
                 }
             }
         });
