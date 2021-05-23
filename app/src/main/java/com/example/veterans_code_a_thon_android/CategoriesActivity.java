@@ -69,11 +69,6 @@ public class CategoriesActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for (DataSnapshot ds: dataSnapshot.getChildren()) {
-//                    Test test = new Test();
-//                    test.setEmail(ds.getValue(Test.class).getEmail());
-//                    //dataSnapshot.child("stars-challenge-83dfe-default-rtdb").getValue(Test.class).getEmail()
-//                    Log.d(TAG, test.getEmail());
-
                             Business business = new Business();
                             business.setDuns(ds.getValue(Business.class).getDuns());
                             business.setDisabled(ds.getValue(Business.class).isDisabled());
@@ -94,10 +89,26 @@ public class CategoriesActivity extends AppCompatActivity {
                             business.setVerified(ds.getValue(Business.class).getVerified());
                             business.setWoman(ds.getValue(Business.class).isWoman());
 
-                            Log.d(TAG, "" + business.isDisabled());
-//                    List<String> arr = test.getCategoryTemps();
-//                    Log.d(TAG, arr.get(0));
+                            businesses.add(business);
                         }
+
+                        //categories.addAll(Category.extractCategory(businesses));
+                        categories = Category.extractCategory(businesses);
+
+                        RecyclerView rvCategories = findViewById(R.id.rvCategories);
+
+                        //BE WARNED! "[Class].this" MAY BE WRONG!!! Take this out
+                        // of listener???
+                        final CategoryAdapter categoryAdapter =
+                                new CategoryAdapter(CategoriesActivity.this, categories);
+                        rvCategories.setAdapter(categoryAdapter);
+                        rvCategories.setLayoutManager(
+                                new LinearLayoutManager(CategoriesActivity.this));
+
+                        //NOTIFYDATASETCHANGE, FOO!
+                        categoryAdapter.notifyDataSetChanged();
+
+
                     }
 
                     @Override
@@ -107,21 +118,7 @@ public class CategoriesActivity extends AppCompatActivity {
                     }
                 });
 
-                //categories.addAll(Category.extractCategory(businesses));
-                categories = Category.extractCategory(businesses);
 
-                RecyclerView rvCategories = findViewById(R.id.rvCategories);
-
-                //BE WARNED! "[Class].this" MAY BE WRONG!!! Take this out
-                // of listener???
-                final CategoryAdapter categoryAdapter =
-                        new CategoryAdapter(CategoriesActivity.this, categories);
-                rvCategories.setAdapter(categoryAdapter);
-                rvCategories.setLayoutManager(
-                        new LinearLayoutManager(CategoriesActivity.this));
-
-                //NOTIFYDATASETCHANGE, FOO!
-                categoryAdapter.notifyDataSetChanged();
 
             }
 
