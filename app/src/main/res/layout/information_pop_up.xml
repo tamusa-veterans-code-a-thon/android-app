@@ -5,4 +5,63 @@
     android:layout_height="match_parent"
     android:background="@drawable/information_window"
     tools:context=".InformationPopUp">
+
+    <TextView
+        android:id="@+id/pop_name"
+        android:text="Testing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_alignParentLeft="true"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/pop_address"
+        android:text="Testing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/pop_name"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/pop_phone"
+        android:text="Testing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/pop_address"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/pop_email"
+        android:text="Testing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/pop_phone"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/pop_web"
+        android:text="Testing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/pop_email"
+        android:textSize="25sp" />
 </RelativeLayout>
