@@ -35,12 +35,10 @@
         </activity>
 
         <activity
-            android:name="Map"
-            android:screenOrientation="portrait" />
+            android:name="Map" />
         <activity
             android:name=".InformationPopUp"
-            android:theme="@style/PopUp"
-            android:screenOrientation="portrait" />
+            android:theme="@style/PopUp" />
 
     </application>
 

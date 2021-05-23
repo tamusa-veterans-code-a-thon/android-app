@@ -21,7 +21,8 @@ public class InformationPopUp extends Activity {
         TextView web = (TextView) findViewById(R.id.pop_web);
 
         Intent code = getIntent();
-        String getName = code.getStringExtra("userPassed");
+        String getName = "";
+        getName = code.getStringExtra("businessPassed");
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);

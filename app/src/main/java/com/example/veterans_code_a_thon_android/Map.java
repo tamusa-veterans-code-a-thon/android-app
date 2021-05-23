@@ -4,8 +4,10 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
@@ -25,29 +27,52 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Map extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener, LocationListener {
+        GoogleApiClient.OnConnectionFailedListener, LocationListener, GoogleMap.OnMarkerClickListener {
     private GoogleMap gMap;
     private GoogleApiClient googleApi;
-    private LocationRequest Request;
-    private Location lastLocation;
     private Marker userLocation;
     private static final int Request_User_Location_Code = 99;
+    //FirebaseDatabase firebaseDatabase;
+    //DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.business_map);
+        //firebaseDatabase = FirebaseDatabase.getInstance();
+
+        for(int i = 0; i < 185; i++) {
+            //databaseReference = firebaseDatabase.getReference(String.valueOf(i));
+            //getdata();
+        }
 
         // Check user permission for location
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            checkUserLocationPermission();
-        }
+        checkUserLocationPermission();
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
+
+    /*private void getdata() {
+       databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Toast.makeText(Map.this, "DATA", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(Map.this, "Fail to get data.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }*/
 
     // Check client location permission
     public boolean checkUserLocationPermission() {
@@ -69,15 +94,7 @@ public class Map extends FragmentActivity implements OnMapReadyCallback, GoogleA
             buildGoogleApiClient();
             gMap.setMyLocationEnabled(true);
         }
-
-        gMap.setOnMarkerClickListener(marker -> {
-            Intent i = new Intent(this, InformationPopUp.class);
-            startActivity(i);
-            String passName = marker.getTitle();
-            i.putExtra("businessPassed", passName);
-            gMap.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
-            return true;
-        });
+        gMap.setOnMarkerClickListener(this);
     }
 
     // Accessing google services
@@ -90,7 +107,6 @@ public class Map extends FragmentActivity implements OnMapReadyCallback, GoogleA
     // Go to last location, and pin store location
     @SuppressWarnings("deprecation")
     public void onLocationChanged(Location location) {
-        lastLocation = location;
 
         if (userLocation != null) {
             userLocation.remove();
@@ -104,7 +120,7 @@ public class Map extends FragmentActivity implements OnMapReadyCallback, GoogleA
         MarkerOptions options = new MarkerOptions();
         options.position(lastLocation);
         options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-        options.title("You");
+        options.snippet("You");
         gMap.addMarker(options);
 
         String[] businessNames = {"Business1","Business2","Business3","Business4","Business5"};
@@ -113,8 +129,13 @@ public class Map extends FragmentActivity implements OnMapReadyCallback, GoogleA
 
         // Create marks of the preset locations
         for (int i = 0; i < newLatitude.length; i++) {
-            LatLng businesses = new LatLng(newLatitude[i], newLongitude[i]);
-            Marker address = gMap.addMarker(new MarkerOptions().position(businesses).title(businessNames[i]).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+            LatLng businessLocation = new LatLng(newLatitude[i], newLongitude[i]);
+            // Add marker and snippet
+            MarkerOptions info = new MarkerOptions();
+            info.position(businessLocation);
+            info.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+            info.snippet(businessNames[i]);
+            gMap.addMarker(info);
         }
 
         if (googleApi != null) {
@@ -125,13 +146,13 @@ public class Map extends FragmentActivity implements OnMapReadyCallback, GoogleA
     @SuppressWarnings("deprecation")
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        Request = new LocationRequest();
-        Request.setInterval(1100);
-        Request.setFastestInterval(1100);
-        Request.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+        LocationRequest request = new LocationRequest();
+        request.setInterval(1100);
+        request.setFastestInterval(1100);
+        request.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            LocationServices.FusedLocationApi.requestLocationUpdates(googleApi, Request, this);
+            LocationServices.FusedLocationApi.requestLocationUpdates(googleApi, request, this);
         }
     }
 
@@ -141,5 +162,16 @@ public class Map extends FragmentActivity implements OnMapReadyCallback, GoogleA
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        marker.hideInfoWindow();
+        String passName = marker.getSnippet();
+        Intent i = new Intent(this, InformationPopUp.class);
+        i.putExtra("businessPassed", passName);
+        startActivity(i);
+        gMap.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
+        return false;
     }
 }

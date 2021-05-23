@@ -7,7 +7,6 @@
 
     <TextView
         android:id="@+id/business_title"
-        android:text="Testing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
