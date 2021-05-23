@@ -41,7 +41,7 @@ public class CategoriesActivity extends AppCompatActivity {
 
         //categories = new ArrayList<>();
 
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final FirebaseDatabase database = FirebaseDatabase.getInstance("https://stars-challenge-83dfe-default-rtdb.firebaseio.com/");
         //The ref below may require a path or ".child("NAME_OF_DB")"
         DatabaseReference dbRef = database.getReference();
 
@@ -74,11 +74,29 @@ public class CategoriesActivity extends AppCompatActivity {
 //                    //dataSnapshot.child("stars-challenge-83dfe-default-rtdb").getValue(Test.class).getEmail()
 //                    Log.d(TAG, test.getEmail());
 
-                            Test test = new Test();
-                            test.setCategories(ds.getValue(Test.class).getCategories());
+                            Business business = new Business();
+                            business.setDuns(ds.getValue(Business.class).getDuns());
+                            business.setDisabled(ds.getValue(Business.class).isDisabled());
+                            business.setAddress1(ds.getValue(Business.class).getAddress1());
+                            business.setAddress2(ds.getValue(Business.class).getAddress2());
+                            business.setCategories(ds.getValue(Business.class).getCategories());
+                            business.setCity(ds.getValue(Business.class).getCity());
+                            business.setEmail(ds.getValue(Business.class).getEmail());
+                            business.setEstablished(ds.getValue(Business.class).getEstablished());
+                            business.setExpiration(ds.getValue(Business.class).getExpiration());
+                            business.setFax(ds.getValue(Business.class).getFax());
+                            business.setImage(ds.getValue(Business.class).getImage());
+                            business.setMinority(ds.getValue(Business.class).isMinority());
+                            business.setName(ds.getValue(Business.class).getName());
+                            business.setPhone(ds.getValue(Business.class).getPhone());
+                            business.setState(ds.getValue(Business.class).getState());
+                            business.setUrl(ds.getValue(Business.class).getUrl());
+                            business.setVerified(ds.getValue(Business.class).getVerified());
+                            business.setWoman(ds.getValue(Business.class).isWoman());
+
+                            Log.d(TAG, "" + business.isDisabled());
 //                    List<String> arr = test.getCategoryTemps();
 //                    Log.d(TAG, arr.get(0));
-                            Log.d(TAG, test.getCategories().toString());
                         }
                     }
 
