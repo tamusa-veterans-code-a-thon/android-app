@@ -7,7 +7,6 @@ import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
@@ -33,25 +32,25 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Map extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, LocationListener, GoogleMap.OnMarkerClickListener {
     private GoogleMap gMap;
     private GoogleApiClient googleApi;
     private Marker userLocation;
     private static final int Request_User_Location_Code = 99;
-    //FirebaseDatabase firebaseDatabase;
-    //DatabaseReference databaseReference;
+    private FirebaseDatabase database = FirebaseDatabase.getInstance("https://stars-challenge-83dfe-default-rtdb.firebaseio.com/");
+    private DatabaseReference reference = database.getReference();
+    private List<String> product = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.business_map);
-        //firebaseDatabase = FirebaseDatabase.getInstance();
 
-        for(int i = 0; i < 185; i++) {
-            //databaseReference = firebaseDatabase.getReference(String.valueOf(i));
-            //getdata();
-        }
+        //getdata();
 
         // Check user permission for location
         checkUserLocationPermission();
@@ -61,10 +60,14 @@ public class Map extends FragmentActivity implements OnMapReadyCallback, GoogleA
     }
 
     /*private void getdata() {
-       databaseReference.addValueEventListener(new ValueEventListener() {
+       reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Toast.makeText(Map.this, "DATA", Toast.LENGTH_SHORT).show();
+                product.add(String.valueOf(snapshot.getValue().toString().split(",")));
+
+                for (int i = 0; i < 100; i++) {
+                    Log.d("*****", product.get(i));
+                }
             }
 
             @Override
