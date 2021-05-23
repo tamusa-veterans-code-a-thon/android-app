@@ -67,7 +67,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                     Intent intent = new Intent(context, BusinessesActivity.class);
                     //Pass a new Intent for Business activity
                     //putExtra a list of businesses with a category that
-                    //matches the one being clicked
+                    //matches the one being clicked; this will
+                    //need to be done with knowledge of how Business is built
                     context.startActivity(intent);
                 }
             });

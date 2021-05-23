@@ -29,7 +29,7 @@ public class BusinessesActivity extends AppCompatActivity {
 
     //List<Business> businesses;
     //OR
-    List<Business> businesses;
+    Business[] businesses;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,9 +40,8 @@ public class BusinessesActivity extends AppCompatActivity {
 
         RecyclerView rvBusinesses = findViewById(R.id.rvBusinesses);
 
-        Business[] arr = (Business[]) businesses.toArray();
-        Arrays.sort(arr);
-        final BusinessAdapter businessAdapter = new BusinessAdapter(this, arr);
+        Arrays.sort(businesses);
+        final BusinessAdapter businessAdapter = new BusinessAdapter(this, businesses);
         rvBusinesses.setAdapter(businessAdapter);
         rvBusinesses.setLayoutManager(new LinearLayoutManager(this));
     }

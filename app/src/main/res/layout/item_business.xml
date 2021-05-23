@@ -5,11 +5,13 @@
     android:id="@+id/cBusiness"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#999E9C">
+    android:background="#999E9C"
+    android:layout_margin="20dp">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:text="REMOVE PLEASE">
     </TextView>
 
 </RelativeLayout>

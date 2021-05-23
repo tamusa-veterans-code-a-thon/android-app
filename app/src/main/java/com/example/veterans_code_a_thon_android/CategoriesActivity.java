@@ -29,17 +29,19 @@ public class CategoriesActivity extends AppCompatActivity {
 
     //List<Business> businesses;
     //OR
-    List<Category> categories;
+    //List<Category> categories;
+    Category[] categories;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
 
-        categories = new ArrayList<>();
+        //categories = new ArrayList<>();
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference();//Try without path?
+        //The ref below may require a path or ".child("NAME_OF_DB")"
+        DatabaseReference ref = database.getReference();
 
         // Attach a listener to read the data at our posts reference
         ref.addValueEventListener(new ValueEventListener() {
@@ -47,7 +49,7 @@ public class CategoriesActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //FOR CATEGORIES:
                 //Take snapshots as Business object
-                Business business = dataSnapshot.getValue(Business.class);
+
                 //Add each object to categories[i]
                 //Call Category method for sethash to extract
                 //In this case, I am unsure how to loop this listener;
@@ -55,9 +57,32 @@ public class CategoriesActivity extends AppCompatActivity {
                 // listener or loop through snapshots in the
                 //listener; then can I continue
                 //THIS ERROR REMAINS UNTIL I FIGURE OUT HOW TO LOOP; SORRY IN ADVANCE (cut this when fixed)
-                categories.add(Category.extractCategory(business));
+
                 // categories (set categories[] to this?)
                 //notify adapter change
+
+                List<Business> businesses = new ArrayList<>();
+
+                for (DataSnapshot child: dataSnapshot.getChildren()) {
+                    Business business = dataSnapshot.getValue(Business.class);
+                    businesses.add(business);
+                }
+
+                //categories.addAll(Category.extractCategory(businesses));
+                categories = Category.extractCategory(businesses);
+
+                RecyclerView rvCategories = findViewById(R.id.rvCategories);
+
+                //BE WARNED! "[Class].this" MAY BE WRONG!!! Take this out
+                // of listener???
+                final CategoryAdapter categoryAdapter =
+                        new CategoryAdapter(CategoriesActivity.this, categories);
+                rvCategories.setAdapter(categoryAdapter);
+                rvCategories.setLayoutManager(
+                        new LinearLayoutManager(CategoriesActivity.this));
+
+                //NOTIFYDATASETCHANGE, FOO!
+                categoryAdapter.notifyDataSetChanged();
 
             }
 
@@ -67,22 +92,6 @@ public class CategoriesActivity extends AppCompatActivity {
             }
         });
 
-
-        //Below here is reliant on how the FireBase works; without data,
-        //I cannot test where it goes
-        RecyclerView rvCategories = findViewById(R.id.rvCategories);
-
-        //Convert ArrayList to array in line below
-        Category[] arr = (Category[]) categories.toArray();
-        Arrays.sort(arr);
-        final CategoryAdapter categoryAdapter = new CategoryAdapter(this, arr);
-        rvCategories.setAdapter(categoryAdapter);
-        rvCategories.setLayoutManager(new LinearLayoutManager(this));
-
-        //NOTIFYDATASETCHANGE, FOO!
-
-
-        //categories = new Category[];//Need to get size?
     }
 }
 /**

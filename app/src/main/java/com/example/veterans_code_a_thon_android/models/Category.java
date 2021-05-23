@@ -25,19 +25,17 @@ public class Category {
     }
 
     //Depending on how we loop, this either returns individual categories or a list
-    public static List<Category> extractCategory (List<Business> businesses)
-            throws JSONException {
+    public static Category[] extractCategory (List<Business> business) {
         HashSet<Category> businessCategories = new HashSet<>();
 
         //for loop through each bussiness
             //for loop through each business' categories
                 //businessCategories.add(new Category)
 
-        //Category categories[] = new Category[businessCategories.size()];
-        List<Category> categories = new ArrayList<>();
+        Category categories[] = new Category[businessCategories.size()];
         //convert hashset to list (iterate hashset, or find helper method)
 
-        //Arrays.sort(categories);
+        Arrays.sort(categories);
         Log.d(TAG, categories.toString());
         return categories;
     }
