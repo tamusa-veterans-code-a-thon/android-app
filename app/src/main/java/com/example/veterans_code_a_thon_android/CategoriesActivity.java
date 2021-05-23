@@ -1,6 +1,7 @@
 package com.example.veterans_code_a_thon_android;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.veterans_code_a_thon_android.adapters.CategoryAdapter;
 import com.example.veterans_code_a_thon_android.models.Business;
 import com.example.veterans_code_a_thon_android.models.Category;
+import com.example.veterans_code_a_thon_android.models.Test;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,10 +43,10 @@ public class CategoriesActivity extends AppCompatActivity {
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         //The ref below may require a path or ".child("NAME_OF_DB")"
-        DatabaseReference ref = database.getReference();
+        DatabaseReference dbRef = database.getReference();
 
         // Attach a listener to read the data at our posts reference
-        ref.addValueEventListener(new ValueEventListener() {
+        dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //FOR CATEGORIES:
@@ -63,10 +65,29 @@ public class CategoriesActivity extends AppCompatActivity {
 
                 List<Business> businesses = new ArrayList<>();
 
-                for (DataSnapshot child: dataSnapshot.getChildren()) {
-                    Business business = dataSnapshot.getValue(Business.class);
-                    businesses.add(business);
-                }
+                dbRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot ds: dataSnapshot.getChildren()) {
+//                    Test test = new Test();
+//                    test.setEmail(ds.getValue(Test.class).getEmail());
+//                    //dataSnapshot.child("stars-challenge-83dfe-default-rtdb").getValue(Test.class).getEmail()
+//                    Log.d(TAG, test.getEmail());
+
+                            Test test = new Test();
+                            test.setCategories(ds.getValue(Test.class).getCategories());
+//                    List<String> arr = test.getCategoryTemps();
+//                    Log.d(TAG, arr.get(0));
+                            Log.d(TAG, test.getCategories().toString());
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        // Getting Post failed, log a message
+                        Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+                    }
+                });
 
                 //categories.addAll(Category.extractCategory(businesses));
                 categories = Category.extractCategory(businesses);
