@@ -19,7 +19,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyD0lDMtnDPUOsY7Il8cFd5LG94VzRPyiDE" />
+            android:value="@string/google_maps_key" />
 
         <activity android:name=".newUser"></activity>
         <activity android:name=".ForgotPassword"></activity>
@@ -30,6 +30,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name="Map"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>
