@@ -5,6 +5,8 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
@@ -33,6 +35,7 @@ public class Map extends FragmentActivity implements OnMapReadyCallback, GoogleA
     private Location lastLocation;
     private Marker userLocation;
     private static final int Request_User_Location_Code = 99;
+    private boolean active = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,12 +54,7 @@ public class Map extends FragmentActivity implements OnMapReadyCallback, GoogleA
     // Check client location permission
     public boolean checkUserLocationPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, Request_User_Location_Code);
-            }
-            else {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, Request_User_Location_Code);
-            }
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, Request_User_Location_Code);
             return false;
         }
         else {
@@ -73,6 +71,13 @@ public class Map extends FragmentActivity implements OnMapReadyCallback, GoogleA
             buildGoogleApiClient();
             gMap.setMyLocationEnabled(true);
         }
+
+        gMap.setOnMarkerClickListener(marker -> {
+            Toast.makeText(this, "Testing", Toast.LENGTH_LONG).show();
+            marker.showInfoWindow();
+            gMap.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
+            return true;
+        });
     }
 
     // Accessing google services
@@ -101,7 +106,6 @@ public class Map extends FragmentActivity implements OnMapReadyCallback, GoogleA
         MarkerOptions options = new MarkerOptions();
         options.position(lastLocation);
         options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-        options.title("Test");
         gMap.addMarker(options);
 
         if (googleApi != null) {
@@ -124,11 +128,9 @@ public class Map extends FragmentActivity implements OnMapReadyCallback, GoogleA
 
     //  @Override
     public void onConnectionSuspended(int i) {
-
     }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
     }
 }
