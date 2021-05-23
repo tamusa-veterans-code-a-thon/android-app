@@ -36,7 +36,7 @@ public class BusinessesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_businesses);
 
-       // businesses = getIntent();//???
+        //businesses = getIntent();//???
 
         RecyclerView rvBusinesses = findViewById(R.id.rvBusinesses);
 

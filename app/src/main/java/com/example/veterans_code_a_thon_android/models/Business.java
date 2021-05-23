@@ -8,17 +8,19 @@ public class Business {
     String site;//Business website
     String address1;//Address 1
     String address2;//Address 2
-    String city;//City location
-    String territory;//State/territory location
+//    String city;//City location
+//    String territory;//State/territory location
     int fax;//Business fax num
     int phoneNum;//Business phone num
     int established;//Year established
     //Verification date and expiration
+    String verifyDate;
+    String expireDate;
     boolean isDisabledOwned;
     boolean isWomanOwned;
     boolean isMinorityOwned;
 
-    public Business (JSONObject jsonObject) throws JSONException {
+    public Business (JSONObject jsonObject) {
         //Set model values based on json
     }
 
