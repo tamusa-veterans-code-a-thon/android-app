@@ -99,21 +99,21 @@
 
 </Button>
 
-    <TextView
+    <Button
         android:id="@+id/forgotPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/LOGINButton"
         android:layout_centerInParent="true"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="90dp"
         android:layout_marginTop="6dp"
-        android:layout_marginRight="50dp"
-
+        android:layout_marginRight="90dp"
+android:onClick="clickk"
         android:text="Forgot Password"
         android:textAlignment="center"
         android:textColor="@color/black">
 
-    </TextView>
+    </Button>
 
     <Button
         android:layout_width="match_parent"

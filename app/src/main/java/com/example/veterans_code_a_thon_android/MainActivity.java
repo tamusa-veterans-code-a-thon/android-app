@@ -47,7 +47,7 @@ private TextView forgotPasswordButton;
                 startActivity(new Intent(MainActivity.this, newUser.class));
             }
         });
-        //user will be taken to a different activity to resetv password
+        //user will be taken to a different activity to reset password
         forgotPasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
