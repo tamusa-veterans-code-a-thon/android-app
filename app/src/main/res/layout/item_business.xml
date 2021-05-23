@@ -9,9 +9,129 @@
     android:layout_margin="20dp">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="REMOVE PLEASE">
+        android:id="@+id/tvName"
+        android:text="TEMP Business"
+        android:textStyle="bold"
+        android:textSize="20dp">
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvEstablishedText"
+        android:textSize="8dp"
+        android:text="Established in 1919"
+        android:layout_below="@+id/tvName"
+        android:layout_marginBottom="5dp">
+    </TextView>
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/tvVerifyDate"-->
+<!--        android:text="TEMP 04/01/2020"-->
+<!--        android:textSize="12dp"-->
+<!--        android:layout_below="@+id/tvEstablishedText"-->
+<!--        android:layout_alignParentRight="true">-->
+<!--    </TextView>-->
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/tvVerifyText"-->
+<!--        android:layout_toLeftOf="@+id/tvVerifyDate"-->
+<!--        android:layout_below="@+id/tvEstablishedText"-->
+<!--        android:text="Verification Date:"-->
+<!--        android:textSize="12dp">-->
+<!--    </TextView>-->
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/tvExpireDate"-->
+<!--        android:text="TEMP 08/01/2020"-->
+<!--        android:textSize="12dp"-->
+<!--        android:layout_below="@+id/tvVerifyDate"-->
+<!--        android:layout_alignParentRight="true">-->
+<!--    </TextView>-->
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/tvExpireText"-->
+<!--        android:layout_toLeftOf="@+id/tvExpireDate"-->
+<!--        android:layout_below="@+id/tvVerifyText"-->
+<!--        android:text="Expiration Date:"-->
+<!--        android:textSize="12dp">-->
+<!--    </TextView>-->
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvPhone"
+        android:text="TEMP (123)456-7890"
+        android:layout_below="@+id/tvEstablishedText"
+        android:textSize="10dp">
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvEmail"
+        android:text="TEMP me@there.com"
+        android:layout_below="@+id/tvPhone"
+        android:textSize="10dp">
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvAddress1"
+        android:text="1234 Place Drive"
+        android:layout_below="@+id/tvEmail"
+        android:textSize="12dp">
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvAddress2"
+        android:text="NA"
+        android:layout_below="@+id/tvAddress1"
+        android:textSize="12dp">
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvCityState"
+        android:text="San Antonio, TX"
+        android:layout_below="@+id/tvAddress2"
+        android:textSize="12dp">
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvIsDisabled"
+        android:layout_below="@+id/tvCityState">
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvIsWoman"
+        android:layout_below="@+id/tvIsDisabled">
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvIsMinority"
+        android:layout_below="@+id/tvIsWoman">
     </TextView>
 
 </RelativeLayout>
