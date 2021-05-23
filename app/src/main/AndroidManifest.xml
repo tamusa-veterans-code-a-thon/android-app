@@ -25,6 +25,7 @@
         <activity android:name=".ForgotPassword"></activity>
         <activity android:name=".BusinessesActivity"></activity>
         <activity android:name=".CategoriesActivity"></activity>
+        <activity android:name=".TempActivity"></activity>
 
         <activity android:name=".MainActivity">
             <intent-filter>
