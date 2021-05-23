@@ -57,6 +57,9 @@ private TextView forgotPasswordButton;
     }
     //log the user in the email and password fields are not empty
     public void onClick(View view) {
+        Intent intent = new Intent(MainActivity.this, Map.class);
+        startActivity(intent);
+
         String mail=email.getText().toString().trim();
         String pass=password.getText().toString().trim();
         if (mail.isEmpty()|| pass.isEmpty()){
