@@ -34,6 +34,10 @@
         <activity
             android:name="Map"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".InformationPopUp"
+            android:theme="@style/PopUp"
+            android:screenOrientation="portrait" />
 
     </application>
 

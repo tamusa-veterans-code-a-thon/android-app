@@ -1,6 +1,7 @@
 package com.example.veterans_code_a_thon_android;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
@@ -73,8 +74,8 @@ public class Map extends FragmentActivity implements OnMapReadyCallback, GoogleA
         }
 
         gMap.setOnMarkerClickListener(marker -> {
-            Toast.makeText(this, "Testing", Toast.LENGTH_LONG).show();
-            marker.showInfoWindow();
+            Intent i = new Intent(this, InformationPopUp.class);
+            startActivity(i);
             gMap.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
             return true;
         });
